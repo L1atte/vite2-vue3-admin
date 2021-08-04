@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-08-01 21:06:27
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-02 00:26:06
+ * @LastEditTime: 2021-08-03 00:55:59
  * @FilePath: \vite2-vue3-admin\src\config\index.js
  */
 const env = import.meta.env.MODE || 'prod'
