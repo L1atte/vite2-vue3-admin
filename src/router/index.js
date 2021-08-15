@@ -2,14 +2,14 @@
  * @Author: Latte
  * @Date: 2021-07-28 23:23:02
  * @LAstEditors: Latte
- * @LastEditTime: 2021-07-30 00:11:09
+ * @LastEditTime: 2021-08-12 00:31:20
  * @FilePath: \vite2-vue3-admin\src\router\index.js
  */
 
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "./../components/Home.vue";
-import Welcome from "./../components/Welcome.vue";
-import Login from "./../components/Login.vue";
+import Welcome from "./../views/Welcome.vue";
+import Login from "./../views/Login.vue";
 
 const router = createRouter({
 	history: createWebHashHistory(), // hash模式：createWebHashHistory，history模式：createWebHistory
@@ -29,17 +29,17 @@ const router = createRouter({
 					meta: {
 						title: "欢迎页",
 					},
-					component: () => import("../components/Welcome.vue"),
-				},
-        {
-					name: "login",
-					path: "/login",
-					meta: {
-						title: "欢迎页",
-					},
-					component: () => import("../components/Login.vue"),
+					component: () => import("../views/Welcome.vue"),
 				},
 			],
+		},
+		{
+			name: 'login',
+			path: '/login',
+			meta: {
+				title: '登录',
+			},
+			component: () => import('../views/Login.vue')
 		},
 	],
 });

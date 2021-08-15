@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-08-01 21:06:27
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-03 00:55:59
+ * @LastEditTime: 2021-08-05 00:55:17
  * @FilePath: \vite2-vue3-admin\src\config\index.js
  */
 const env = import.meta.env.MODE || 'prod'
@@ -24,5 +24,6 @@ const EnvConfig = {
 export default {
   env: env,
   mock: true,
+  namespace: "manager",
   ...EnvConfig[env]
 }

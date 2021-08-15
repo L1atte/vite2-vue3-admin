@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-08-02 01:39:19
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-05 00:16:54
+ * @LastEditTime: 2021-08-13 00:57:08
  * @FilePath: \vite2-vue3-admin\src\utils\request.js
  */
 
@@ -34,7 +34,7 @@ service.interceptors.request.use((req) => {
  service.interceptors.response.use((req) => {
   console.log("req",req)
   const { code, data, msg } = req.data
-  if(code === 1) {
+  if(code === 200) {
     return data
   } else if (code === 40001) {
     ElMessage.error(TOKEN_INVALID)
@@ -57,6 +57,10 @@ function request(options) {
 
   if(options.method.toLowerCase() === 'get') {
     options.params = options.data  //参数类型转换
+  }
+
+  if(typeof options.mock !== 'undefined') {
+    config.mock = options.mock
   }
 
   if(config.env === 'prod') {
