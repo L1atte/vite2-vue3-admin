@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-08-02 01:39:19
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-13 00:57:08
+ * @LastEditTime: 2021-08-17 00:36:14
  * @FilePath: \vite2-vue3-admin\src\utils\request.js
  */
 
@@ -10,6 +10,7 @@ import axios from "axios";
 import config from "../config";
 import { ElMessage } from "element-plus";
 import router from "../router";
+import storage from './storage'
 
 const TOKEN_INVALID = 'token认证失败，请重新登录'
 const NETWORK_ERROR = '网络请求异常，请稍后重试'
@@ -18,7 +19,7 @@ const NETWORK_ERROR = '网络请求异常，请稍后重试'
  */
 const service = axios.create({
   baseURL: config.baseApi,
-  timeout: 8000,
+  timeout: 8000
 })
 
 /**
@@ -36,7 +37,7 @@ service.interceptors.request.use((req) => {
   const { code, data, msg } = req.data
   if(code === 200) {
     return data
-  } else if (code === 40001) {
+  } else if (code === 50001) {
     ElMessage.error(TOKEN_INVALID)
     setTimeout(() => {
       router.push('/login')
@@ -54,21 +55,19 @@ service.interceptors.request.use((req) => {
  */
 function request(options) {
   options.method = options.method || 'get'
-
-  if(options.method.toLowerCase() === 'get') {
-    options.params = options.data  //参数类型转换
+  if (options.method.toLowerCase() === 'get') {
+      options.params = options.data;
+  }
+  let isMock = config.mock;
+  if (typeof options.mock != 'undefined') {
+      isMock = options.mock;
+  }
+  if (config.env === 'prod') {
+      service.defaults.baseURL = config.baseApi
+  } else {
+      service.defaults.baseURL = isMock ? config.mockApi : config.baseApi
   }
 
-  if(typeof options.mock !== 'undefined') {
-    config.mock = options.mock
-  }
-
-  if(config.env === 'prod') {
-    service.defaults.baseURL = config.baseApi
-  } else{
-    console.log(config.mock)
-    service.defaults.baseURL = config.mock ? config.mockApi : config.baseApi
-  }
   return service(options)
 }
 

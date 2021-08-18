@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-07-28 23:23:02
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-12 00:31:20
+ * @LastEditTime: 2021-08-17 00:29:11
  * @FilePath: \vite2-vue3-admin\src\router\index.js
  */
 
@@ -20,7 +20,7 @@ const router = createRouter({
 			meta: {
 				title: "首页",
 			},
-			redirect: "/welcome",
+			redirect: "/login",
       component: () => import('../components/Home.vue'),
 			children: [
 				{
