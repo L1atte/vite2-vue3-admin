@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-07-28 23:23:02
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-17 00:29:11
+ * @LastEditTime: 2021-08-25 00:19:02
  * @FilePath: \vite2-vue3-admin\src\router\index.js
  */
 
@@ -25,7 +25,7 @@ const router = createRouter({
 			children: [
 				{
 					name: "welcome",
-					path: "/welcome",
+					path: "welcome",
 					meta: {
 						title: "欢迎页",
 					},

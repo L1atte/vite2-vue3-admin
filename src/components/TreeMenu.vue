@@ -2,12 +2,12 @@
  * @Author: Latte
  * @Date: 2021-08-23 23:05:57
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-24 00:39:00
+ * @LastEditTime: 2021-08-25 00:00:00
  * @FilePath: \vite2-vue3-admin\src\components\TreeMenu.vue
 -->
 <template>
   <template v-for="menu in userMenu">
-    <el-submenu v-if="menu.children && menu.children.length>0 && menu.children[0].menuType === '1'" :key="menu._id">
+    <el-submenu v-if="menu.children && menu.children.length>0 && menu.children[0].menuType === '1'" :key="menu._id" :index="menu.path">
       <template #title>
         <i :class="menu.icon"></i>
         <span>{{menu.menuName}}</span>

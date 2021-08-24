@@ -2,7 +2,7 @@
  * @Author: Latte
  * @Date: 2021-07-27 23:53:06
  * @LAstEditors: Latte
- * @LastEditTime: 2021-08-24 00:32:36
+ * @LastEditTime: 2021-08-25 00:14:25
  * @FilePath: \vite2-vue3-admin\src\components\Home.vue
 -->
 <template>
@@ -15,7 +15,7 @@
       </div>
       <!-- 导航菜单 -->
       <el-menu
-        default-active="2"
+        :default-active="activeMenu"
         router
         background-color="#001529"
         text-color="#fff"
@@ -31,10 +31,12 @@
           <div class="menu-fold" @click="toggle">
             <i class="el-icon-s-fold"></i>
           </div>
-          <div class="bread">面包屑</div>
+          <div class="bread">
+            <bread-crumb/>
+          </div>
         </div>
         <div class="user-info">
-          <el-badge :is-dot="noticeCount" class="notice" type="danger">
+          <el-badge :is-dot="noticeCount>0 ? true : false" class="notice" type="danger">
             <i class="el-icon-bell"></i>
           </el-badge>
           <el-dropdown @command="handleLogout">
@@ -64,10 +66,12 @@
 
 <script>
 import TreeMenu from './TreeMenu.vue';
+import BreadCrumb from './BreadCrumb.vue';
 export default {
   name: "Home",
   components: {
     TreeMenu,
+    BreadCrumb,
   },
   data() {
     return {
@@ -75,6 +79,7 @@ export default {
       userInfo: this.$store.state.userInfo,
       noticeCount: 0,
       userMenu: [],
+      activeMenu: location.hash.slice(1), // location.hash: "#/router"
     };
   },
   mounted() {
